@@ -1,0 +1,13 @@
+#!/bin/sh
+# 首次启动：把 dnsmasq 的 DNS 上游指向本机 smartdns，由 smartdns 负责缓存与并发解析
+[ -x /usr/sbin/smartdns ] || exit 0
+[ "$(uci -q get smartdns.@smartdns[0].enabled)" = "1" ] || exit 0
+PORT="$(uci -q get smartdns.@smartdns[0].port)"
+[ -z "$PORT" ] && PORT=6053
+uci -q delete "dhcp.@dnsmasq[0].server"
+uci -q add_list "dhcp.@dnsmasq[0].server=127.0.0.1#$PORT"
+uci -q set "dhcp.@dnsmasq[0].noresolv=1"
+uci -q set "dhcp.@dnsmasq[0].rebind_protection=0"
+uci -q set "dhcp.@dnsmasq[0].domainneeded=0"
+uci -q commit dhcp
+exit 0
