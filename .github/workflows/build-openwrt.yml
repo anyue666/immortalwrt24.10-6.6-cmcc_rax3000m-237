@@ -142,8 +142,9 @@ jobs:
         cd openwrt
         make defconfig
         make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+        # 只清理 dl 顶层的坏包，避免误删 dl/go-mod-cache 里的 Go 模块缓存
+        find dl -maxdepth 1 -type f -size -1024c -exec ls -l {} \;
+        find dl -maxdepth 1 -type f -size -1024c -exec rm -f {} \;
 
     - name: 编译固件
       id: compile
