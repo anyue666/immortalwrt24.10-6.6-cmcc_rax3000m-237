@@ -1,7 +1,7 @@
 config smartdns 'smartdns'
 	option enabled '1'
 	option server_name 'smartdns'
-	option port '6053'
+	option port '53'
 	option auto_set_dnsmasq '1'
 	option cache_size '20000'
 	option prefetch_domain '1'
