@@ -35,6 +35,9 @@ env:
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
+  CCACHE_DIR: /workdir/.ccache
+  CCACHE_MAXSIZE: 4G
+  CCACHE_COMPRESS: 1
 
 permissions:
   contents: write
