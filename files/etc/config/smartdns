@@ -7,8 +7,113 @@ config smartdns 'smartdns'
 	option prefetch_domain '1'
 	option serve_expired '1'
 	option dualstack_ip_selection '1'
+	option speed_check_mode 'ping,tcp:80'
 	option rr_ttl '3600'
 	option rr_ttl_min '5'
 	option ipv6_server '0'
 	option tcp_server '0'
 	option seconddns_enabled '0'
+
+# 国内公共 DNS（IPv4，默认分组）
+config server
+	option enabled '1'
+	option ip '223.5.5.5'
+
+config server
+	option enabled '1'
+	option ip '223.6.6.6'
+
+config server
+	option enabled '1'
+	option ip '119.29.29.29'
+
+config server
+	option enabled '1'
+	option ip '119.28.28.28'
+
+config server
+	option enabled '1'
+	option ip '180.76.76.76'
+
+config server
+	option enabled '1'
+	option ip '114.114.114.114'
+
+config server
+	option enabled '1'
+	option ip '114.114.115.115'
+
+# 国内公共 DNS（IPv6，需路由器有 IPv6 出口）
+config server
+	option enabled '1'
+	option ip '2400:3200::1'
+
+config server
+	option enabled '1'
+	option ip '2400:3200:baba::1'
+
+config server
+	option enabled '1'
+	option ip '2402:4e00::'
+
+config server
+	option enabled '1'
+	option ip '2402:4e00:1::'
+
+config server
+	option enabled '1'
+	option ip '2400:da00::6666'
+
+config server
+	option enabled '1'
+	option ip '240c::6666'
+
+config server
+	option enabled '1'
+	option ip '240c::6644'
+
+# 加密上游（DoH / DoT），与 UDP 上游一起参与并发查询和测速
+config server
+	option enabled '1'
+	option type 'https'
+	option ip 'https://dns.alidns.com/dns-query'
+
+config server
+	option enabled '1'
+	option type 'https'
+	option ip 'https://doh.pub/dns-query'
+
+config server
+	option enabled '1'
+	option type 'tls'
+	option ip '223.5.5.5'
+	option host_name 'dns.alidns.com'
+
+# 中国移动（湖北/武汉）：移动 DNS 按省份分配，跨省使用可能出现解析偏差
+config server
+	option enabled '1'
+	option ip '211.137.58.20'
+
+config server
+	option enabled '1'
+	option ip '211.137.58.21'
+
+config server
+	option enabled '1'
+	option ip '211.137.64.163'
+
+config server
+	option enabled '1'
+	option ip '2409:804c:2000:0001::1'
+
+config server
+	option enabled '1'
+	option ip '2409:804c:2000:0002::1'
+
+config server
+	option enabled '1'
+	option ip '2409:8088::a'
+
+config server
+	option enabled '1'
+	option ip '2409:8088::b'
