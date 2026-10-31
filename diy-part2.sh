@@ -13,7 +13,7 @@
 # Modify default IP
 sudo apt install libfuse-dev
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
 
 # Windows 检出会丢失可执行位，补回自定义 uci-defaults 脚本的执行权限
 [ -d files/etc/uci-defaults ] && chmod +x files/etc/uci-defaults/*
