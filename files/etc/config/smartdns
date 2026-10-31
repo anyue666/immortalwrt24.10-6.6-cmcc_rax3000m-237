@@ -10,110 +10,158 @@ config smartdns 'smartdns'
 	option speed_check_mode 'ping,tcp:80'
 	option rr_ttl '3600'
 	option rr_ttl_min '5'
-	option ipv6_server '0'
+	option ipv6_server '1'
 	option tcp_server '0'
 	option seconddns_enabled '0'
 
 # 国内公共 DNS（IPv4，默认分组）
 config server
 	option enabled '1'
+	option name '阿里DNS 4A'
 	option ip '223.5.5.5'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '阿里DNS 4B'
 	option ip '223.6.6.6'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '腾讯DNS 4A'
 	option ip '119.29.29.29'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '腾讯DNS 4B'
 	option ip '119.28.28.28'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '百度DNS 4'
 	option ip '180.76.76.76'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '114DNS 4A'
 	option ip '114.114.114.114'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '114DNS 4B'
 	option ip '114.114.115.115'
+	option port '53'
 
 # 国内公共 DNS（IPv6，需路由器有 IPv6 出口）
 config server
 	option enabled '1'
+	option name '阿里DNS 6A'
 	option ip '2400:3200::1'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '阿里DNS 6B'
 	option ip '2400:3200:baba::1'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '腾讯DNS 6A'
 	option ip '2402:4e00::'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '腾讯DNS 6B'
 	option ip '2402:4e00:1::'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '百度DNS 6'
 	option ip '2400:da00::6666'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '114DNS 6A'
 	option ip '240c::6666'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '114DNS 6B'
 	option ip '240c::6644'
+	option port '53'
 
 # 加密上游（DoH / DoT），与 UDP 上游一起参与并发查询和测速
 config server
 	option enabled '1'
+	option name '阿里DoH'
 	option type 'https'
 	option ip 'https://dns.alidns.com/dns-query'
+	option port '443'
 
 config server
 	option enabled '1'
+	option name '腾讯DoH'
 	option type 'https'
 	option ip 'https://doh.pub/dns-query'
+	option port '443'
 
 config server
 	option enabled '1'
+	option name '阿里DoT'
 	option type 'tls'
 	option ip '223.5.5.5'
+	option port '853'
 	option host_name 'dns.alidns.com'
 
 # 中国移动（湖北/武汉）：移动 DNS 按省份分配，跨省使用可能出现解析偏差
 config server
 	option enabled '1'
+	option name '移动湖北 4A'
 	option ip '211.137.58.20'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '移动湖北 4B'
 	option ip '211.137.58.21'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '移动湖北 4C'
 	option ip '211.137.64.163'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '移动湖北 6A'
 	option ip '2409:804c:2000:0001::1'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '移动湖北 6B'
 	option ip '2409:804c:2000:0002::1'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '移动湖北 6C'
 	option ip '2409:8088::a'
+	option port '53'
 
 config server
 	option enabled '1'
+	option name '移动湖北 6D'
 	option ip '2409:8088::b'
+	option port '53'
