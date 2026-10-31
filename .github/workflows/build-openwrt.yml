@@ -106,10 +106,24 @@ jobs:
 
     - name: 加载自定义配置
       run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        # 源码树自带顶层 files 目录，直接 mv 会移动成 openwrt/files/files，必须合并复制
+        if [ -d files ]; then
+          mkdir -p openwrt/files
+          cp -a files/. openwrt/files/
+          echo "自定义文件清单："
+          find openwrt/files -type f
+        else
+          echo "警告：未找到自定义 files 目录"
+        fi
+        if [ -e $CONFIG_FILE ]; then mv $CONFIG_FILE openwrt/.config; fi
         chmod +x $DIY_P2_SH
         cd openwrt
+        if [ -f files/etc/config/smartdns ]; then
+          echo "smartdns 自定义配置已就位"
+        else
+          echo "错误：files/etc/config/smartdns 未就位，终止编译"
+          exit 1
+        fi
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: SSH 连接到 Actions
@@ -200,7 +214,7 @@ jobs:
         echo "账号：root" >> release.txt
         echo "密码：无" >> release.txt
         echo "默认主题：Bootstrap" >> release.txt
-        echo "集成插件：aria2 openlist2 diskman lucky ksmb hd-idle autoreboot mtwifi-cfg " >> release.txt
+        echo "集成插件：aria2 openlist2 diskman lucky ksmb hd-idle autoreboot mtwifi-cfg smartdns " >> release.txt
         echo "编译源码：https://github.com/padavanonly/immortalwrt-mt798x-6.6" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
