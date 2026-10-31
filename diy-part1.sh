@@ -16,5 +16,11 @@
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
-git clone https://github.com/sbwml/luci-app-openlist2 package/openlist
+# 已移除 lucky 与 openlist2 的第三方仓库
+
+# OpenClash：锁定最新稳定 release v0.47.156（2026-08-10 发布，适配 fw4/nftables），不用 master 分支
+git clone --depth=1 -b v0.47.156 https://github.com/vernesong/OpenClash.git package/OpenClash
+if [ ! -f package/OpenClash/luci-app-openclash/Makefile ]; then
+	echo "错误：OpenClash 拉取失败，终止编译"
+	exit 1
+fi
